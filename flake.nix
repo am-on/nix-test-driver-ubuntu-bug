@@ -14,6 +14,12 @@
           sharedDirs = {};
           testScript = ''
             vm.wait_for_unit("multi-user.target")
+            vm.execute("""
+            sudo bash -c 'echo -e "Defaults !requiretty\\nDefaults !use_pty" > /etc/sudoers.d/disable-pty \
+              && visudo -cf /etc/sudoers.d/disable-pty \
+              && chmod 440 /etc/sudoers.d/disable-pty'
+            """)
+            vm.execute("sudo bash -c \"echo 'Created foo → bar.\n' >&2 && echo 'foo' \"")
             out = vm.execute("bash -c 'echo $$; ls -l /proc/$$/fd'")
             print(out)
             out = vm.execute("sudo bash -c 'echo $$; ls -l /proc/$$/fd'")
