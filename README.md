@@ -41,3 +41,8 @@ ValueError: string argument should contain only ASCII characters
     start_all, test_script, machines, vlans, driver, log, os, create_machine, subtest, run_tests, join_all, retry, serial_stdout_off, serial_stdout_on, polling_condition, Machine
 ```
 
+Run the test locally:
+```bash
+nix -L build github:am-on/nix-test-driver-ubuntu-bug
+```
+
