@@ -14,7 +14,10 @@
           sharedDirs = {};
           testScript = ''
             vm.wait_for_unit("multi-user.target")
-            vm.execute("sudo bash -c \"echo 'Created foo → bar.\n' >&2 && echo 'foo' \"")
+            out = vm.execute("bash -c 'echo $$; ls -l /proc/$$/fd'")
+            print(out)
+            out = vm.execute("sudo bash -c 'echo $$; ls -l /proc/$$/fd'")
+            print(out)
           '';
         };
         in vmTest.driver;
