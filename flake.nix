@@ -17,7 +17,7 @@
             vm.execute("sudo bash -c \"echo 'Created foo → bar.\n' >&2 && echo 'foo' \"")
           '';
         };
-        in vmTest.driverInteractive;
+        in vmTest.driver;
 
     packages.x86_64-linux.default = self.packages.x86_64-linux.test-vm;
 
